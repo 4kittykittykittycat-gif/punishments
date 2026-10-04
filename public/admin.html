@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Staff Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-admin="1">
+  <header class="top">
+    <div class="brand"><span class="sigil">✦</span> Divine <span class="dim">Staff Panel</span></div>
+    <div class="who"><span id="whoami"></span><button id="logout" class="ghost-link" hidden>Log out</button></div>
+  </header>
+
+  <main class="wrap">
+    <section id="login" class="login" hidden>
+      <form id="loginForm" class="card">
+        <h2>Staff login</h2>
+        <label>Your name<input name="name" maxlength="32" required autocomplete="username"></label>
+        <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+        <button type="submit" class="btn">Enter</button>
+        <p id="loginErr" class="err" role="alert"></p>
+        <p class="hint">5 wrong attempts locks you out for 15 minutes.</p>
+      </form>
+    </section>
+
+    <div id="panel" hidden>
+      <section class="hero small">
+        <div class="stats" id="stats"></div>
+        <div id="stale" class="stale" hidden></div>
+      </section>
+      <section class="controls">
+        <input id="search" type="search" placeholder="Search a username…" autocomplete="off" spellcheck="false" aria-label="Search usernames">
+        <div class="seg" id="typeSeg"><button data-v="" class="on">All</button><button data-v="BAN">Bans</button><button data-v="MUTE">Mutes</button></div>
+        <div class="seg" id="statusSeg"><button data-v="" class="on">Any</button><button data-v="active">Active</button><button data-v="expired">Expired</button><button data-v="removed">Lifted</button></div>
+      </section>
+      <section id="list" class="list" aria-live="polite"></section>
+      <nav id="pager" class="pager"></nav>
+    </div>
+  </main>
+
+  <dialog id="detail"></dialog>
+  <script src="/app.js"></script>
+</body>
+</html>
