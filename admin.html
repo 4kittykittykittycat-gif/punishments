@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Staff Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-admin="1">
+  <header class="top">
+    <div class="brand"><span class="sigil">✦</span> Divine <span class="dim">Staff Panel</span></div>
+    <div class="who"><span id="whoami"></span><button id="logout" class="ghost-link" hidden>Log out</button></div>
+  </header>
+
+  <main class="wrap">
+    <section id="login" class="login" hidden>
+      <form id="loginForm" class="card">
+        <h2>Staff login</h2>
+        <label>Your name<input name="name" maxlength="32" required autocomplete="username"></label>
+        <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+        <button type="submit" class="btn">Enter</button>
+        <p id="loginErr" class="err" role="alert"></p>
+        <p class="hint">5 wrong attempts locks you out for 15 minutes.</p>
+      </form>
+    </section>
+
+    <div id="panel" hidden>
+      <nav class="tabs" id="tabs" role="tablist">
+        <button data-tab="punishments" class="on" role="tab">Punishments</button>
+        <button data-tab="swears" role="tab">Swear log</button>
+        <button data-tab="top" role="tab">Top offenders</button>
+        <button data-tab="words" role="tab">Variants</button>
+      </nav>
+
+      <div data-pane="punishments">
+        <section class="hero small">
+          <div class="stats" id="stats"></div>
+          <div id="stale" class="stale" hidden></div>
+        </section>
+        <section class="controls">
+          <input id="search" type="search" placeholder="Search a username…" autocomplete="off" spellcheck="false" aria-label="Search usernames">
+          <div class="seg" id="typeSeg"><button data-v="" class="on">All</button><button data-v="BAN">Bans</button><button data-v="MUTE">Mutes</button></div>
+          <div class="seg" id="statusSeg"><button data-v="" class="on">Any</button><button data-v="active">Active</button><button data-v="expired">Expired</button><button data-v="removed">Lifted</button></div>
+        </section>
+        <section id="list" class="list" aria-live="polite"></section>
+        <nav id="pager" class="pager"></nav>
+      </div>
+
+      <div data-pane="swears" hidden>
+        <section class="hero small">
+          <div class="stats" id="swStats"></div>
+          <div id="swStale" class="stale" hidden></div>
+        </section>
+        <section class="controls">
+          <input id="swSearch" class="search" type="search" placeholder="Search player, message, spelling, word or server…" autocomplete="off" spellcheck="false" aria-label="Search swear log">
+          <div class="seg" id="swSev"><button data-v="" class="on">All</button><button data-v="SEVERE">Slurs</button><button data-v="PROFANITY">Swears</button></div>
+          <div class="seg" id="swDays"><button data-v="1">24h</button><button data-v="7">7d</button><button data-v="30">30d</button><button data-v="" class="on">All</button></div>
+        </section>
+        <div id="swFilters" class="chips"></div>
+        <section id="swList" class="log" aria-live="polite"></section>
+        <nav id="swPager" class="pager"></nav>
+      </div>
+
+      <div data-pane="top" hidden>
+        <section class="controls">
+          <div class="seg" id="topSev"><button data-v="" class="on">All</button><button data-v="SEVERE">Slurs</button><button data-v="PROFANITY">Swears</button></div>
+          <div class="seg" id="topDays"><button data-v="7">7 days</button><button data-v="30">30 days</button><button data-v="" class="on">All time</button></div>
+          <span class="hint">Ranked by slurs, then total. Click a player to see everything they said.</span>
+        </section>
+        <section id="topList" class="board"></section>
+      </div>
+
+      <div data-pane="words" hidden>
+        <section class="controls">
+          <input id="wSearch" class="search" type="search" placeholder="Search a word or a spelling (e.g. n1g)…" autocomplete="off" spellcheck="false" aria-label="Search variants">
+          <div class="seg" id="wDays"><button data-v="7">7 days</button><button data-v="30">30 days</button><button data-v="" class="on">All time</button></div>
+        </section>
+        <p class="hint">Every spelling people used to get around the filter, grouped by the word it counts as. Click a spelling to see who typed it.</p>
+        <section id="wList" class="words"></section>
+      </div>
+    </div>
+  </main>
+
+  <dialog id="detail"></dialog>
+  <script src="/app.js"></script>
+  <script src="/admin.js"></script>
+</body>
+</html>

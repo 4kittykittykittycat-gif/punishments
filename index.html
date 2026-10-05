@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Punishments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-admin="0">
+  <header class="top">
+    <div class="brand"><span class="sigil">✦</span> Divine <span class="dim">Punishments</span></div>
+    <a class="ghost-link" href="/admin">Staff</a>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Who broke the rules,<br><span class="accent">and why.</span></h1>
+      <div class="stats" id="stats"></div>
+      <div id="stale" class="stale" hidden></div>
+    </section>
+
+    <section class="controls">
+      <input id="search" type="search" placeholder="Search a username…" autocomplete="off" spellcheck="false" aria-label="Search usernames">
+      <div class="seg" id="typeSeg" role="group" aria-label="Type">
+        <button data-v="" class="on">All</button><button data-v="BAN">Bans</button><button data-v="MUTE">Mutes</button>
+      </div>
+      <div class="seg" id="statusSeg" role="group" aria-label="Status">
+        <button data-v="" class="on">Any</button><button data-v="active">Active</button><button data-v="expired">Expired</button><button data-v="removed">Lifted</button>
+      </div>
+    </section>
+
+    <section id="list" class="list" aria-live="polite"></section>
+    <nav id="pager" class="pager"></nav>
+  </main>
+
+  <dialog id="detail"></dialog>
+  <script src="/app.js"></script>
+</body>
+</html>
